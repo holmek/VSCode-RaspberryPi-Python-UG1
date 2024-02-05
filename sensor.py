@@ -17,7 +17,7 @@ async def motion_sensor():
         if pir.motion_detected:
             print("Bevægelse opfanget i nærheden. Buzzeren bliver aktiveret")
             buzzer.beep(on_time=1, off_time=1, n=None, background=True) # 14.1.4. Buzzer https://gpiozero.readthedocs.io/en/stable/api_output.html
-        await asyncio.sleep(1)
+        await asyncio.sleep(10)
 
 # Dette er min hovedfunktion hvor motion_detection bliver udløst
 async def main():
