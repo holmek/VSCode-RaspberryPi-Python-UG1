@@ -6,7 +6,7 @@ from gpiozero import MotionSensor
 sensor_pin = 16
 buzzer_pin = 12
 
-# Dette er mine objekter, som er pir, hvilket er motionsensoeren og buzzeren.
+# Dette er mine objekter, som er pir, hvilket er motionsensoren og buzzeren.
 pir = MotionSensor(sensor_pin, queue_len=1, sample_rate=10, threshold=0.5, partial=False, pin_factory=None)
 buzzer = Buzzer(buzzer_pin)
 
@@ -15,16 +15,17 @@ async def motion_sensor():
     while True:
         if pir.motion_detected:
             print("Bevægelse opfanget i nærheden")
-            buzzer.on()
             print("Buzzeren bliver aktiveret")
+            buzzer.on()
+            await asyncio.sleep(2)
             buzzer.off()
-        await asyncio.sleep(10)
+        await asyncio.sleep(1)
 
 # Dette er min hovedfunktion hvor motion_detection bliver udløst
 async def main():
     try:
         task = asyncio.create_task(motion_sensor())
-        await asyncio.gather(task)
+        await task
     except KeyboardInterrupt:
         print("Programmet lukker")
 
