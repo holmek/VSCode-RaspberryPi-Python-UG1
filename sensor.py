@@ -16,6 +16,7 @@ async def motion_sensor():
         if pir.motion_detected:
             print("Bevægelse opfanget i nærheden. Buzzeren bliver aktiveret")
             buzzer.beep(on_time=1, off_time=1, n=None, background=False)
+            buzzer.off()
         await asyncio.sleep(10)
 
 # Dette er min hovedfunktion hvor motion_detection bliver udløst
